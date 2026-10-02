@@ -1,4 +1,4 @@
-package dev.danvega.safeguards;
+package com.dev.safeguards;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

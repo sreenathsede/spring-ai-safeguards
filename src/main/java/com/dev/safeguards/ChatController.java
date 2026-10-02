@@ -1,4 +1,4 @@
-package dev.danvega.safeguards;
+package com.dev.safeguards;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SafeGuardAdvisor;

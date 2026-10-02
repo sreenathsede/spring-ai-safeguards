@@ -1,4 +1,4 @@
-package dev.danvega.safeguards;
+package com.dev.safeguards;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

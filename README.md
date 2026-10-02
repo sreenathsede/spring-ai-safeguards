@@ -81,7 +81,7 @@ An input filter can only block what it recognizes in the user's words. But the d
 This demo protects a discount code, `SUNRISE50`, with two layers:
 
 - `SafeGuardAdvisor` blocks the code on the way **in** (input filter).
-- [SecretLeakAdvisor](src/main/java/dev/danvega/safeguards/SecretLeakAdvisor.java) scans the response on the way **out** and replaces it if the code appears (output filter).
+- [SecretLeakAdvisor](src/main/java/com/dev/safeguards/SecretLeakAdvisor.java) scans the response on the way **out** and replaces it if the code appears (output filter).
 
 Watch the bypass and the catch in one request:
 
@@ -108,7 +108,7 @@ Note the advisor orders in this demo: input filter (0), `SecretLeakAdvisor` (100
 
 ## Demo 4: PII masking with a custom advisor (`/pii`)
 
-[PiiMaskingAdvisor](src/main/java/dev/danvega/safeguards/PiiMaskingAdvisor.java) is a custom `CallAdvisor` that rewrites the user message before it goes out. Regexes replace card numbers, SSNs, and email addresses with placeholders like `[CARD REDACTED]`.
+[PiiMaskingAdvisor](src/main/java/com/dev/safeguards/PiiMaskingAdvisor.java) is a custom `CallAdvisor` that rewrites the user message before it goes out. Regexes replace card numbers, SSNs, and email addresses with placeholders like `[CARD REDACTED]`.
 
 The endpoint sends a message containing a name, an email, and a card number:
 
@@ -133,7 +133,7 @@ SimpleLoggerAdvisor(200)    → logs the MASKED prompt (what the model actually 
 model call
 ```
 
-This demo registers the logger with order 200 on purpose. In an earlier version it used the no-arg `new SimpleLoggerAdvisor()`, which defaults to order 0. The model still got masked text, but the raw card number was written to the application log first. That is a real leak, just a different one. If you want to see it happen, change `new SimpleLoggerAdvisor(200)` to `new SimpleLoggerAdvisor()` in [ChatController](src/main/java/dev/danvega/safeguards/ChatController.java) and hit the endpoint again.
+This demo registers the logger with order 200 on purpose. In an earlier version it used the no-arg `new SimpleLoggerAdvisor()`, which defaults to order 0. The model still got masked text, but the raw card number was written to the application log first. That is a real leak, just a different one. If you want to see it happen, change `new SimpleLoggerAdvisor(200)` to `new SimpleLoggerAdvisor()` in [ChatController](src/main/java/com/dev/safeguards/ChatController.java) and hit the endpoint again.
 
 ### How to be sure what leaves your app
 
